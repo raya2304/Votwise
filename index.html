@@ -1,0 +1,424 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoltWise - Electricity Bill Calculator</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ink: "#18231F",
+                        leaf: "#315C4A",
+                        mint: "#DDEBE3",
+                        cream: "#F7F5EF",
+                        gold: "#B58A45",
+                        soft: "#EAF0EC"
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .card {
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(24, 35, 31, 0.10);
+        }
+
+        .meter {
+            background: conic-gradient(#315C4A 0deg 252deg, #DDEBE3 252deg 360deg);
+        }
+    </style>
+</head>
+
+<body class="bg-cream text-ink">
+
+    <!-- NAVBAR -->
+    <header class="sticky top-0 z-50 bg-cream/95 backdrop-blur border-b border-ink/10">
+        <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+
+            <a href="#home" class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-leaf text-white flex items-center justify-center font-bold text-lg">
+                    V
+                </div>
+
+                <div>
+                    <h1 class="font-bold text-lg">VoltWise</h1>
+                    <p class="text-[10px] uppercase tracking-widest text-ink/50">
+                        Smart Energy
+                    </p>
+                </div>
+            </a>
+
+            <div class="hidden md:flex gap-8 text-sm font-medium">
+                <a href="#calculator" class="hover:text-leaf">Calculator</a>
+                <a href="#usage" class="hover:text-leaf">Usage Guide</a>
+                <a href="#tips" class="hover:text-leaf">Save Energy</a>
+                <a href="#about" class="hover:text-leaf">About</a>
+            </div>
+
+            <a href="#calculator"
+                class="bg-leaf text-white px-5 py-2.5 rounded-full text-sm hover:opacity-90">
+                Calculate Bill
+            </a>
+        </nav>
+    </header>
+
+
+    <!-- HERO -->
+    <section id="home" class="py-20 md:py-28">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-14 items-center">
+
+            <div>
+                <div class="inline-flex items-center gap-2 bg-mint px-4 py-2 rounded-full text-sm text-leaf font-semibold">
+                    <span class="w-2 h-2 bg-leaf rounded-full"></span>
+                    Know your usage. Control your bill.
+                </div>
+
+                <h2 class="text-5xl md:text-7xl font-bold leading-tight mt-7 tracking-tight">
+                    Understand where
+                    your electricity
+                    <span class="text-leaf">goes.</span>
+                </h2>
+
+                <p class="mt-6 text-lg text-ink/60 max-w-xl leading-8">
+                    Estimate your monthly electricity bill, understand your
+                    consumption and discover simple ways to reduce unnecessary
+                    energy usage.
+                </p>
+
+                <div class="flex flex-wrap gap-4 mt-8">
+                    <a href="#calculator"
+                        class="bg-leaf text-white px-7 py-3.5 rounded-full font-medium">
+                        Start Calculation
+                    </a>
+
+                    <a href="#usage"
+                        class="border border-ink/20 px-7 py-3.5 rounded-full font-medium">
+                        Explore Usage
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-3 gap-6 mt-12 max-w-lg">
+                    <div>
+                        <p class="text-2xl font-bold">01</p>
+                        <p class="text-xs text-ink/50 mt-1">Enter units</p>
+                    </div>
+
+                    <div>
+                        <p class="text-2xl font-bold">02</p>
+                        <p class="text-xs text-ink/50 mt-1">Get estimate</p>
+                    </div>
+
+                    <div>
+                        <p class="text-2xl font-bold">03</p>
+                        <p class="text-xs text-ink/50 mt-1">Save energy</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- HERO VISUAL -->
+            <div class="relative">
+
+                <div class="bg-mint rounded-[40px] p-8 md:p-12">
+
+                    <div class="bg-white rounded-3xl p-7">
+
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-xs uppercase tracking-widest text-ink/40">
+                                    Estimated monthly bill
+                                </p>
+
+                                <p class="text-5xl font-bold mt-3">
+                                    ₹1,842
+                                </p>
+
+                                <p class="text-sm text-leaf mt-2">
+                                    Within your usual range
+                                </p>
+                            </div>
+
+                            <div class="w-20 h-20 rounded-full meter flex items-center justify-center">
+                                <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center">
+                                    <span class="text-sm font-bold">70%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-8">
+                            <div class="flex justify-between text-xs text-ink/50">
+                                <span>0 units</span>
+                                <span>250 units</span>
+                            </div>
+
+                            <div class="h-3 bg-soft rounded-full mt-2 overflow-hidden">
+                                <div class="h-full bg-leaf rounded-full w-[70%]"></div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4 mt-7">
+                            <div class="bg-cream rounded-2xl p-4">
+                                <p class="text-xs text-ink/50">Consumption</p>
+                                <p class="font-bold text-xl mt-1">175 kWh</p>
+                            </div>
+
+                            <div class="bg-cream rounded-2xl p-4">
+                                <p class="text-xs text-ink/50">Daily average</p>
+                                <p class="font-bold text-xl mt-1">5.8 kWh</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="absolute -bottom-5 -left-4 bg-white rounded-2xl shadow-lg p-5">
+                    <p class="text-xs text-ink/50">Potential saving</p>
+                    <p class="text-2xl font-bold text-leaf mt-1">₹280/mo</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- CALCULATOR -->
+    <section id="calculator" class="py-24 bg-white">
+
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="max-w-2xl mb-12">
+                <p class="text-sm uppercase tracking-[0.25em] text-gold font-semibold">
+                    Bill Estimator
+                </p>
+
+                <h2 class="text-4xl md:text-5xl font-bold mt-3">
+                    Calculate your electricity bill
+                </h2>
+
+                <p class="text-ink/60 mt-4 leading-7">
+                    Enter your monthly consumption and we'll estimate your
+                    electricity charge using a simple slab-based calculation.
+                </p>
+            </div>
+
+
+            <div class="grid lg:grid-cols-5 gap-8">
+
+                <!-- INPUT -->
+                <div class="lg:col-span-2 bg-cream rounded-3xl p-8">
+
+                    <form id="billForm">
+
+                        <label class="block text-sm font-semibold">
+                            Monthly electricity usage
+                        </label>
+
+                        <div class="relative mt-3">
+                            <input
+                                id="units"
+                                type="number"
+                                min="0"
+                                max="10000"
+                                placeholder="Example: 180"
+                                class="w-full bg-white border border-ink/10 rounded-2xl px-5 py-4 pr-16 outline-none focus:border-leaf text-lg"
+                                required>
+
+                            <span class="absolute right-5 top-1/2 -translate-y-1/2 text-sm text-ink/40">
+                                units
+                            </span>
+                        </div>
+
+                        <p id="error"
+                            class="hidden text-sm text-red-600 mt-2">
+                            Please enter a valid unit value.
+                        </p>
+
+
+                        <label class="block text-sm font-semibold mt-7">
+                            Billing period
+                        </label>
+
+                        <select
+                            id="period"
+                            class="w-full mt-3 bg-white border border-ink/10 rounded-2xl px-5 py-4 outline-none focus:border-leaf">
+
+                            <option value="1">1 Month</option>
+                            <option value="2">2 Months</option>
+                            <option value="3">3 Months</option>
+
+                        </select>
+
+
+                        <div class="mt-7 bg-mint rounded-2xl p-5">
+
+                            <p class="text-sm font-semibold">
+                                Current tariff slabs
+                            </p>
+
+                            <div class="mt-4 space-y-3 text-sm">
+
+                                <div class="flex justify-between">
+                                    <span>0 – 100 units</span>
+                                    <span>₹2.00/unit</span>
+                                </div>
+
+                                <div class="flex justify-between">
+                                    <span>101 – 200 units</span>
+                                    <span>₹3.50/unit</span>
+                                </div>
+
+                                <div class="flex justify-between">
+                                    <span>201 – 400 units</span>
+                                    <span>₹5.00/unit</span>
+                                </div>
+
+                                <div class="flex justify-between">
+                                    <span>401+ units</span>
+                                    <span>₹6.50/unit</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="w-full bg-leaf text-white py-4 rounded-2xl mt-7 font-semibold hover:opacity-90">
+                            Calculate My Bill
+                        </button>
+
+                    </form>
+
+                </div>
+
+
+                <!-- RESULT -->
+                <div class="lg:col-span-3 bg-ink text-white rounded-3xl p-8 md:p-10">
+
+                    <div class="flex justify-between items-start">
+
+                        <div>
+                            <p class="text-xs uppercase tracking-widest text-white/40">
+                                Your estimate
+                            </p>
+
+                            <h3 class="text-4xl md:text-5xl font-bold mt-3">
+                                ₹<span id="billAmount">0</span>
+                            </h3>
+                        </div>
+
+                        <div class="bg-white/10 px-4 py-2 rounded-full text-xs">
+                            Estimated
+                        </div>
+
+                    </div>
+
+
+                    <div class="grid sm:grid-cols-3 gap-4 mt-10">
+
+                        <div class="bg-white/5 rounded-2xl p-5">
+                            <p class="text-xs text-white/45">Units</p>
+                            <p id="resultUnits" class="text-2xl font-bold mt-2">0</p>
+                        </div>
+
+                        <div class="bg-white/5 rounded-2xl p-5">
+                            <p class="text-xs text-white/45">Daily usage</p>
+                            <p id="dailyUsage" class="text-2xl font-bold mt-2">0</p>
+                        </div>
+
+                        <div class="bg-white/5 rounded-2xl p-5">
+                            <p class="text-xs text-white/45">Potential saving</p>
+                            <p id="saving" class="text-2xl font-bold mt-2">₹0</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="mt-10">
+
+                        <div class="flex justify-between text-sm">
+                            <span>Consumption level</span>
+                            <span id="level">Waiting for input</span>
+                        </div>
+
+                        <div class="h-3 bg-white/10 rounded-full mt-3 overflow-hidden">
+                            <div id="usageBar"
+                                class="h-full bg-white rounded-full w-0 transition-all duration-700">
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="mt-10 border-t border-white/10 pt-7">
+
+                        <p class="text-sm text-white/50">
+                            Estimated charge breakdown
+                        </p>
+
+                        <div class="mt-5 space-y-4">
+
+                            <div class="flex justify-between">
+                                <span class="text-white/60">Energy charge</span>
+                                <span id="energyCharge">₹0</span>
+                            </div>
+
+                            <div class="flex justify-between">
+                                <span class="text-white/60">Service charge</span>
+                                <span>₹50</span>
+                            </div>
+
+                            <div class="flex justify-between font-bold text-lg border-t border-white/10 pt-4">
+                                <span>Total estimate</span>
+                                <span>₹<span id="totalCharge">0</span></span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- USAGE GUIDE -->
+    <section id="usage" class="py-24">
+
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="text-center max-w-2xl mx-auto">
+                <p class="text-sm uppercase tracking-[0.25em] text-gold font-semibold">
+                    Know Your Home
+                </p>
+
+                <h2 class="text-4xl md:text-5xl font-bold mt-3">
+                    Where does your electricity go?
+                </h2>
+
+                <p class="text-ink/60 mt-4">
+                    Some appliances quietly consume more electricity than you might expect.
+                </p>
+            </div>
+
+
